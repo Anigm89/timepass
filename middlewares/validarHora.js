@@ -1,6 +1,6 @@
 const validar = (req, res, next) => {
     let hora = new Date().getHours();
-    let minutos = new Date().getMinutes()
+    let minutos = (new Date().getMinutes()< 10 ? '0' : '') + new Date().getMinutes() ;
     const horaactual= `${hora}:${minutos}`;
     
     if(hora >= 12 && hora <=23){
@@ -28,3 +28,14 @@ const validar = (req, res, next) => {
     next();
 }
 module.exports = validar;
+
+/*
+//solucion:
+const validar = (req, res, next) => {
+    if(req.hora <12){
+        res.locals.mensaje = `Aún no es la hora, espera hasta las 14:00 para entrar`;
+        return res.redirect('/?mensaje=' + encodeURIComponent(res.locals.mensaje));
+    }
+    next()
+}
+*/

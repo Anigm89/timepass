@@ -1,8 +1,14 @@
 const obtenerhora = (req, res, next) =>{
- let horaactual = new Date().toLocaleTimeString('es-ES');
-//console.log(hora);
+ //let horaactual = new Date().toLocaleTimeString('es-ES');
+ let hora = new Date().getHours();
+ let minutos = (new Date().getMinutes()< 10 ? '0' : '') + new Date().getMinutes() ;
 
-req.dateType = `
+ const horaactual= `${hora}:${minutos}`;
+ 
+ req.hora = hora;  //para luego validar
+//console.log(horaactual);
+
+req.horaActual = `
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +26,7 @@ req.dateType = `
 
  next();
 }
- 
+
 
 module.exports = obtenerhora;
  
